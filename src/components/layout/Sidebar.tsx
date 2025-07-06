@@ -1,19 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Button } from 'primereact/button';
 import { Sidebar as PrimeSidebar } from 'primereact/sidebar';
 import { useTheme } from 'next-themes';
+import { PrimeReactContext } from 'primereact/api';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export function Sidebar() {
   const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { changeTheme } = useContext(PrimeReactContext);
   const pathname = usePathname();
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+
+    // Also switch PrimeReact theme
+    if (changeTheme) {
+      const currentPrimeTheme = theme === 'dark' ? 'lara-dark-blue' : 'lara-light-blue';
+      const newPrimeTheme = newTheme === 'dark' ? 'lara-dark-blue' : 'lara-light-blue';
+      changeTheme(currentPrimeTheme, newPrimeTheme, 'theme-link');
+    }
   };
 
   const navItems = [
@@ -21,6 +37,11 @@ export function Sidebar() {
     { href: '/saved', label: 'Saved', icon: 'pi pi-heart' },
     { href: '/about', label: 'About', icon: 'pi pi-info-circle' },
   ];
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>
@@ -38,7 +59,7 @@ export function Sidebar() {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center gap-2 mb-8">
-            <img src="/icon-1.png" alt="Color Lab" className="w-8 h-8" />
+            <Image src="/icon-1.png" alt="Color Lab" width={32} height={32} />
             <h1 className="text-xl font-bold">Color Lab</h1>
           </div>
 
@@ -86,7 +107,7 @@ export function Sidebar() {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center gap-2 mb-8">
-            <img src="/icon-1.png" alt="Color Lab" className="w-8 h-8" />
+            <Image src="/icon-1.png" alt="Color Lab" width={32} height={32} />
             <h1 className="text-xl font-bold">Color Lab</h1>
           </div>
 
