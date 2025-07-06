@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<!-- Home: Color Lab - Create, save, and explore stunning gradients, palettes, and glassmorphic themes. -->
+	<url>
+		<loc>https://color-lab.netlify.app/</loc>
+		<priority>1.0</priority>
+	</url>
+	<!-- Saved: View and manage your saved palettes and gradients. -->
+	<url>
+		<loc>https://color-lab.netlify.app/saved</loc>
+		<priority>0.8</priority>
+	</url>
+	<!-- About: Learn how to use Color Lab and connect with the creator. -->
+	<url>
+		<loc>https://color-lab.netlify.app/about</loc>
+		<priority>0.5</priority>
+	</url>
+</urlset> 
