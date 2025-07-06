@@ -178,9 +178,9 @@ export function GradientBuilder({ onSave }: GradientBuilderProps) {
         <div>
           <label className="block text-sm font-medium mb-2">Quick Colors</label>
           <div className="flex flex-wrap gap-2">
-            {DEFAULT_COLORS.map(color => (
+            {DEFAULT_COLORS.map((color, index) => (
               <button
-                key={color}
+                key={`${color}-${index}`}
                 onClick={() => {
                   addColor();
                   updateColor(colors.length, color);

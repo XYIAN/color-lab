@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { Sidebar as PrimeSidebar } from 'primereact/sidebar';
 import { useTheme } from 'next-themes';
-import { PrimeReactContext } from 'primereact/api';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -13,7 +12,6 @@ export function Sidebar() {
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const { changeTheme } = useContext(PrimeReactContext);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -21,15 +19,7 @@ export function Sidebar() {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-
-    // Also switch PrimeReact theme
-    if (changeTheme) {
-      const currentPrimeTheme = theme === 'dark' ? 'lara-dark-blue' : 'lara-light-blue';
-      const newPrimeTheme = newTheme === 'dark' ? 'lara-dark-blue' : 'lara-light-blue';
-      changeTheme(currentPrimeTheme, newPrimeTheme, 'theme-link');
-    }
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   const navItems = [

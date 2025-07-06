@@ -14,10 +14,10 @@ export const DEFAULT_COLORS = [
   '#BB8FCE',
   '#85C1E9',
   '#F1948A',
-  '#85C1E9',
   '#82E0AA',
   '#F8C471',
-  '#F7DC6F',
+  '#E74C3C',
+  '#3498DB',
 ];
 
 export const GRADIENT_DIRECTIONS = [
