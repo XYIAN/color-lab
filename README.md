@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Color Lab
 
-## Getting Started
+Welcome to **Color Lab** — your playground for creating, exploring, and saving stunning gradients, color palettes, and glassmorphic themes!
 
-First, run the development server:
+## 🎨 What can you do?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Build Gradients:** Use intuitive sliders and color pickers to craft beautiful gradients. Instantly copy the CSS code for your creations.
+- **Glassmorphism Preview:** Adjust blur and transparency to see your colors in a modern, glassy style.
+- **Save Favorites:** Tap the save icon to store your favorite palettes and gradients. Revisit them anytime on the **Saved** page.
+- **Theme Switcher:** Instantly toggle between light and dark modes, or pick from a range of PrimeReact themes in the sidebar.
+- **Responsive Design:** Enjoy a smooth, touch-friendly experience on mobile and a glossy, adaptive interface on desktop.
+- **Fun Interactions:** Discover playful microinteractions, sparkles, and hidden surprises as you explore.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏠 Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Home:** Experiment with gradients, glassmorphism, and palettes.
+- **Saved:** View and manage your saved palettes and gradients.
+- **About:** Learn how to use Color Lab and connect with the creator.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 How to Explore
 
-## Learn More
+1. **Start on the Home page:** Drag sliders, pick colors, and watch your gradient or glass effect update live.
+2. **Save your favorites:** Tap the save button to keep a palette or gradient for later.
+3. **Switch themes:** Use the sidebar to try different looks and toggle dark mode.
+4. **Visit Saved:** See all your creations in one place, ready to copy or tweak.
+5. **Check About:** Find tips, tricks, and ways to connect with the creator.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Enjoy creating with Color Lab — where every color tells a story!
