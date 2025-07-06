@@ -56,13 +56,13 @@ export function CustomizationPanel({
   const { styles, content } = componentConfig;
 
   return (
-    <div className="bg-card rounded-lg p-6 border border-border h-fit sticky top-4">
+    <div className="bg-card rounded-lg p-4 border border-border h-fit sticky top-4">
       <h2 className="text-xl font-semibold mb-4">Customization</h2>
 
       <Accordion activeIndex={activeIndex} onTabChange={e => setActiveIndex(e.index)}>
         {/* Colors */}
         <AccordionTab header="Colors">
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium mb-2">Background Color</label>
               <div className="flex gap-2">
@@ -70,13 +70,13 @@ export function CustomizationPanel({
                   type="color"
                   value={styles.backgroundColor}
                   onChange={e => onStyleChange('backgroundColor', e.target.value)}
-                  className="w-12 h-10 rounded border border-border cursor-pointer"
+                  className="w-12 h-10 rounded border border-border cursor-pointer bg-background"
                 />
                 <InputText
                   value={styles.backgroundColor}
                   onChange={e => onStyleChange('backgroundColor', e.target.value)}
                   placeholder="#ffffff"
-                  className="flex-1"
+                  className="flex-1 bg-background text-foreground border-border"
                 />
               </div>
             </div>
@@ -88,13 +88,13 @@ export function CustomizationPanel({
                   type="color"
                   value={styles.textColor}
                   onChange={e => onStyleChange('textColor', e.target.value)}
-                  className="w-12 h-10 rounded border border-border cursor-pointer"
+                  className="w-12 h-10 rounded border border-border cursor-pointer bg-background"
                 />
                 <InputText
                   value={styles.textColor}
                   onChange={e => onStyleChange('textColor', e.target.value)}
                   placeholder="#000000"
-                  className="flex-1"
+                  className="flex-1 bg-background text-foreground border-border"
                 />
               </div>
             </div>
@@ -106,13 +106,13 @@ export function CustomizationPanel({
                   type="color"
                   value={styles.borderColor}
                   onChange={e => onStyleChange('borderColor', e.target.value)}
-                  className="w-12 h-10 rounded border border-border cursor-pointer"
+                  className="w-12 h-10 rounded border border-border cursor-pointer bg-background"
                 />
                 <InputText
                   value={styles.borderColor}
                   onChange={e => onStyleChange('borderColor', e.target.value)}
                   placeholder="#e5e7eb"
-                  className="flex-1"
+                  className="flex-1 bg-background text-foreground border-border"
                 />
               </div>
             </div>
@@ -124,13 +124,13 @@ export function CustomizationPanel({
                   type="color"
                   value={styles.primaryColor}
                   onChange={e => onStyleChange('primaryColor', e.target.value)}
-                  className="w-12 h-10 rounded border border-border cursor-pointer"
+                  className="w-12 h-10 rounded border border-border cursor-pointer bg-background"
                 />
                 <InputText
                   value={styles.primaryColor}
                   onChange={e => onStyleChange('primaryColor', e.target.value)}
                   placeholder="#3b82f6"
-                  className="flex-1"
+                  className="flex-1 bg-background text-foreground border-border"
                 />
               </div>
             </div>
@@ -139,7 +139,7 @@ export function CustomizationPanel({
 
         {/* Typography */}
         <AccordionTab header="Typography">
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium mb-2">Font Family</label>
               <Dropdown
@@ -147,7 +147,7 @@ export function CustomizationPanel({
                 onChange={e => onStyleChange('fontFamily', e.value)}
                 options={FONT_FAMILIES}
                 placeholder="Select font family"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -157,7 +157,7 @@ export function CustomizationPanel({
                 value={styles.fontSize}
                 onChange={e => onStyleChange('fontSize', e.target.value)}
                 placeholder="16px"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -168,7 +168,7 @@ export function CustomizationPanel({
                 onChange={e => onStyleChange('fontWeight', e.value)}
                 options={FONT_WEIGHTS}
                 placeholder="Select font weight"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -178,7 +178,7 @@ export function CustomizationPanel({
                 value={styles.lineHeight}
                 onChange={e => onStyleChange('lineHeight', e.target.value)}
                 placeholder="1.5"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
           </div>
@@ -186,14 +186,14 @@ export function CustomizationPanel({
 
         {/* Spacing */}
         <AccordionTab header="Spacing">
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium mb-2">Padding</label>
               <InputText
                 value={styles.padding}
                 onChange={e => onStyleChange('padding', e.target.value)}
                 placeholder="16px"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -203,7 +203,7 @@ export function CustomizationPanel({
                 value={styles.margin}
                 onChange={e => onStyleChange('margin', e.target.value)}
                 placeholder="0px"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -213,7 +213,7 @@ export function CustomizationPanel({
                 value={styles.borderRadius}
                 onChange={e => onStyleChange('borderRadius', e.target.value)}
                 placeholder="8px"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
           </div>
@@ -221,14 +221,14 @@ export function CustomizationPanel({
 
         {/* Effects */}
         <AccordionTab header="Effects">
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium mb-2">Shadow</label>
               <InputText
                 value={styles.shadow}
                 onChange={e => onStyleChange('shadow', e.target.value)}
                 placeholder="0 1px 3px 0 rgba(0, 0, 0, 0.1)"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -265,7 +265,7 @@ export function CustomizationPanel({
                 onChange={e => onStyleChange('animation', e.value)}
                 options={ANIMATIONS}
                 placeholder="Select animation"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -275,7 +275,7 @@ export function CustomizationPanel({
                 value={styles.transition}
                 onChange={e => onStyleChange('transition', e.target.value)}
                 placeholder="all 0.2s ease"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
           </div>
@@ -283,14 +283,14 @@ export function CustomizationPanel({
 
         {/* Layout */}
         <AccordionTab header="Layout">
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium mb-2">Width</label>
               <InputText
                 value={styles.width}
                 onChange={e => onStyleChange('width', e.target.value)}
                 placeholder="100%"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -300,7 +300,7 @@ export function CustomizationPanel({
                 value={styles.height}
                 onChange={e => onStyleChange('height', e.target.value)}
                 placeholder="auto"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -310,7 +310,7 @@ export function CustomizationPanel({
                 value={styles.maxWidth}
                 onChange={e => onStyleChange('maxWidth', e.target.value)}
                 placeholder="400px"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -320,7 +320,7 @@ export function CustomizationPanel({
                 value={styles.maxHeight}
                 onChange={e => onStyleChange('maxHeight', e.target.value)}
                 placeholder="none"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
           </div>
@@ -328,14 +328,14 @@ export function CustomizationPanel({
 
         {/* Content */}
         <AccordionTab header="Content">
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium mb-2">Title</label>
               <InputText
                 value={content.title}
                 onChange={e => onContentChange('title', e.target.value)}
                 placeholder="Component title"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
 
@@ -345,7 +345,7 @@ export function CustomizationPanel({
                 value={content.description}
                 onChange={e => onContentChange('description', e.target.value)}
                 placeholder="Component description"
-                className="w-full"
+                className="w-full bg-background text-foreground border-border"
               />
             </div>
           </div>

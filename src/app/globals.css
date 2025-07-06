@@ -424,3 +424,149 @@
     transform: none;
   }
 }
+
+/* PrimeReact component overrides for better integration */
+.p-button {
+  @apply transition-all duration-200;
+}
+
+.p-card {
+  @apply shadow-lg border border-border;
+}
+
+.p-inputtext {
+  @apply border-border;
+}
+
+.p-dropdown {
+  @apply border-border;
+}
+
+.p-slider {
+  @apply border-border;
+}
+
+/* Dark mode overrides for PrimeReact components */
+.dark .p-component {
+  color: hsl(var(--foreground));
+}
+
+.dark .p-card {
+  background: hsl(var(--card));
+  border-color: hsl(var(--border));
+}
+
+.dark .p-inputtext {
+  background: hsl(var(--input));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.dark .p-dropdown {
+  background: hsl(var(--input));
+  border-color: hsl(var(--border));
+}
+
+.dark .p-dropdown-panel {
+  background: hsl(var(--popover));
+  border-color: hsl(var(--border));
+}
+
+.dark .p-dropdown-item {
+  color: hsl(var(--foreground));
+}
+
+.dark .p-dropdown-item:hover {
+  background: hsl(var(--accent));
+}
+
+.dark .p-slider .p-slider-range {
+  background: hsl(var(--primary));
+}
+
+.dark .p-slider .p-slider-handle {
+  background: hsl(var(--primary));
+}
+
+.dark .p-accordion .p-accordion-header {
+  background: hsl(var(--card));
+  border-color: hsl(var(--border));
+}
+
+.dark .p-accordion .p-accordion-header .p-accordion-header-link {
+  background: hsl(var(--card));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.dark .p-accordion .p-accordion-content {
+  background: hsl(var(--card));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.dark .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background: hsl(var(--accent));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.dark .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:hover {
+  background: hsl(var(--accent));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+/* Enhanced focus states for dark mode */
+.dark .p-inputtext:focus {
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+  border-color: hsl(var(--primary));
+}
+
+.dark .p-dropdown:focus {
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+  border-color: hsl(var(--primary));
+}
+
+/* Color input styling for dark mode */
+.dark input[type='color'] {
+  background: hsl(var(--input));
+  border-color: hsl(var(--border));
+}
+
+.dark input[type='color']::-webkit-color-swatch-wrapper {
+  background: hsl(var(--input));
+}
+
+.dark input[type='color']::-webkit-color-swatch {
+  border-color: hsl(var(--border));
+}
+
+/* Slider styling for dark mode */
+.dark .p-slider .p-slider-track {
+  background: hsl(var(--muted));
+}
+
+.dark .p-slider .p-slider-handle:hover {
+  background: hsl(var(--primary));
+  transform: scale(1.1);
+}
+
+/* Toast styling for dark mode */
+.dark .p-toast .p-toast-message {
+  background: hsl(var(--card));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.dark .p-toast .p-toast-message .p-toast-message-content {
+  color: hsl(var(--foreground));
+}
+
+.dark .p-toast .p-toast-message .p-toast-icon-close {
+  color: hsl(var(--muted-foreground));
+}
+
+.dark .p-toast .p-toast-message .p-toast-icon-close:hover {
+  color: hsl(var(--foreground));
+}

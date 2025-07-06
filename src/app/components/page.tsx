@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
+import { useTheme } from 'next-themes';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { CustomizationPanel } from '@/components/components/CustomizationPanel';
 import { ComponentPreview } from '@/components/components/ComponentPreview';
@@ -11,36 +12,39 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { ComponentConfig, ComponentType, ComponentStyles, ComponentContent } from '@/types';
 import { STORAGE_KEYS } from '@/constants';
 
-export default function ComponentsPage() {
-  const toast = useRef<Toast>(null);
-  const [selectedComponent, setSelectedComponent] = useState<ComponentType>('card');
-  const [componentConfig, setComponentConfig] = useState<ComponentConfig>({
+// Theme-aware default configurations
+const getDefaultConfig = (type: ComponentType, theme: string): ComponentConfig => {
+  const isDark = theme === 'dark';
+
+  const baseStyles: ComponentStyles = {
+    backgroundColor: isDark ? '#1f2937' : '#ffffff',
+    textColor: isDark ? '#f9fafb' : '#000000',
+    borderColor: isDark ? '#374151' : '#e5e7eb',
+    primaryColor: '#3b82f6',
+    secondaryColor: isDark ? '#9ca3af' : '#6b7280',
+    fontSize: '16px',
+    fontWeight: '400',
+    fontFamily: 'Inter',
+    lineHeight: '1.5',
+    padding: '16px',
+    margin: '0px',
+    borderRadius: '8px',
+    shadow: isDark ? '0 4px 6px -1px rgba(0, 0, 0, 0.3)' : '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+    opacity: 1,
+    blur: 0,
+    animation: 'none',
+    transition: 'all 0.2s ease',
+    width: '100%',
+    height: 'auto',
+    maxWidth: '400px',
+    maxHeight: 'none',
+  };
+
+  return {
     id: Date.now().toString(),
-    name: 'Custom Card',
-    type: 'card',
-    styles: {
-      backgroundColor: '#ffffff',
-      textColor: '#000000',
-      borderColor: '#e5e7eb',
-      primaryColor: '#3b82f6',
-      secondaryColor: '#6b7280',
-      fontSize: '16px',
-      fontWeight: '400',
-      fontFamily: 'Inter',
-      lineHeight: '1.5',
-      padding: '16px',
-      margin: '0px',
-      borderRadius: '8px',
-      shadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-      opacity: 1,
-      blur: 0,
-      animation: 'none',
-      transition: 'all 0.2s ease',
-      width: '100%',
-      height: 'auto',
-      maxWidth: '400px',
-      maxHeight: 'none',
-    },
+    name: `Custom ${type.charAt(0).toUpperCase() + type.slice(1)}`,
+    type,
+    styles: baseStyles,
     content: {
       title: 'Sample Card',
       description: 'This is a customizable card component',
@@ -76,12 +80,31 @@ export default function ComponentsPage() {
       ],
     },
     createdAt: new Date(),
-  });
+  };
+};
+
+export default function ComponentsPage() {
+  const toast = useRef<Toast>(null);
+  const { resolvedTheme } = useTheme();
+  const [selectedComponent, setSelectedComponent] = useState<ComponentType>('card');
+  const [componentConfig, setComponentConfig] = useState<ComponentConfig>(() =>
+    getDefaultConfig('card', resolvedTheme || 'light')
+  );
 
   const [savedComponents, setSavedComponents] = useLocalStorage<ComponentConfig[]>(
     STORAGE_KEYS.SAVED_COMPONENTS || 'color-lab-saved-components',
     []
   );
+
+  // Reset component config when theme changes
+  useEffect(() => {
+    const currentTheme = resolvedTheme || 'light';
+    setComponentConfig(prev => ({
+      ...getDefaultConfig(prev.type, currentTheme),
+      id: prev.id,
+      name: prev.name,
+    }));
+  }, [resolvedTheme]);
 
   const handleStyleChange = (property: keyof ComponentStyles, value: string | number) => {
     setComponentConfig(prev => ({
@@ -125,12 +148,8 @@ export default function ComponentsPage() {
 
   const handleComponentTypeChange = (type: ComponentType) => {
     setSelectedComponent(type);
-    // Reset to default config for new component type
-    setComponentConfig(prev => ({
-      ...prev,
-      type,
-      name: `Custom ${type.charAt(0).toUpperCase() + type.slice(1)}`,
-    }));
+    const currentTheme = resolvedTheme || 'light';
+    setComponentConfig(getDefaultConfig(type, currentTheme));
   };
 
   return (
