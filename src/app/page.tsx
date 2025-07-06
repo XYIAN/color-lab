@@ -73,6 +73,21 @@ export default function HomePage() {
     return savedItems.some(item => item.id === gradientId);
   };
 
+  const scrollToGradientBuilder = () => {
+    const element = document.getElementById('gradient-builder');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToGlassPreview = () => {
+    const element = document.getElementById('glass-preview');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToSavedItems = () => {
+    const element = document.getElementById('saved-items');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <PageWrapper>
       <Toast ref={toast} />
@@ -91,15 +106,19 @@ export default function HomePage() {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {/* Gradient Builder */}
-          <GradientBuilder onSave={handleSaveGradient} />
+          <div id="gradient-builder">
+            <GradientBuilder onSave={handleSaveGradient} />
+          </div>
 
           {/* Glassmorphism Preview */}
-          <GlassPreview onChange={handleSaveGlass} />
+          <div id="glass-preview">
+            <GlassPreview onSave={handleSaveGlass} />
+          </div>
         </div>
 
         {/* Recent Saved Items */}
         {savedItems.length > 0 && (
-          <div className="mb-8">
+          <div id="saved-items" className="mb-8">
             <h2 className="text-2xl font-bold mb-6">Recently Saved</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {savedItems
@@ -133,7 +152,10 @@ export default function HomePage() {
         <div className="bg-card rounded-lg p-8 border border-border">
           <h2 className="text-2xl font-bold mb-4">Quick Start</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
+            <div
+              className="text-center cursor-pointer hover:scale-105 transition-transform duration-200"
+              onClick={scrollToGradientBuilder}
+            >
               <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <i className="pi pi-palette text-2xl text-white" />
               </div>
@@ -142,7 +164,10 @@ export default function HomePage() {
                 Use the gradient builder to create beautiful color transitions
               </p>
             </div>
-            <div className="text-center">
+            <div
+              className="text-center cursor-pointer hover:scale-105 transition-transform duration-200"
+              onClick={scrollToGlassPreview}
+            >
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-teal-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <i className="pi pi-eye text-2xl text-white" />
               </div>
@@ -151,7 +176,10 @@ export default function HomePage() {
                 Experiment with blur and transparency for modern glassmorphism
               </p>
             </div>
-            <div className="text-center">
+            <div
+              className="text-center cursor-pointer hover:scale-105 transition-transform duration-200"
+              onClick={scrollToSavedItems}
+            >
               <div className="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <i className="pi pi-heart text-2xl text-white" />
               </div>

@@ -40,6 +40,7 @@ export const STORAGE_KEYS = {
   SAVED_GRADIENTS: 'color-lab-saved-gradients',
   SAVED_PALETTES: 'color-lab-saved-palettes',
   SAVED_GLASS: 'color-lab-saved-glass',
+  SAVED_COMPONENTS: 'color-lab-saved-components',
   THEME_PREFERENCE: 'color-lab-theme',
 } as const;
 

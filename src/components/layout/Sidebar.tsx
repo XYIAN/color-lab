@@ -24,6 +24,7 @@ export function Sidebar() {
 
   const navItems = [
     { href: '/', label: 'Home', icon: 'pi pi-home' },
+    { href: '/components', label: 'Components', icon: 'pi pi-th-large' },
     { href: '/saved', label: 'Saved', icon: 'pi pi-heart' },
     { href: '/about', label: 'About', icon: 'pi pi-info-circle' },
   ];
