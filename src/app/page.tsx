@@ -19,6 +19,7 @@ export default function HomePage() {
   );
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeFeature, setActiveFeature] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   // Mouse tracking for parallax effects
   useEffect(() => {
@@ -28,6 +29,11 @@ export default function HomePage() {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Set mounted state to prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
   const handleSaveGradient = (gradient: Gradient) => {
@@ -96,8 +102,13 @@ export default function HomePage() {
   };
 
   const scrollToSavedItems = () => {
-    const element = document.getElementById('saved-items');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (mounted && savedItems.length > 0) {
+      const element = document.getElementById('saved-items');
+      element?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // If no saved items, scroll to the saved page
+      window.location.href = '/saved';
+    }
   };
 
   const scrollToComponents = () => {
@@ -270,9 +281,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-6">
             <div
-              className="group relative p-8 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
+              className="group relative p-10 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
               onClick={scrollToGradientBuilder}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -292,7 +303,7 @@ export default function HomePage() {
             </div>
 
             <div
-              className="group relative p-8 rounded-2xl bg-gradient-to-br from-green-500/10 to-teal-500/10 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
+              className="group relative p-10 rounded-2xl bg-gradient-to-br from-green-500/10 to-teal-500/10 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
               onClick={scrollToGlassPreview}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -312,7 +323,7 @@ export default function HomePage() {
             </div>
 
             <div
-              className="group relative p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
+              className="group relative p-10 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
               onClick={scrollToComponents}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -332,7 +343,7 @@ export default function HomePage() {
             </div>
 
             <div
-              className="group relative p-8 rounded-2xl bg-gradient-to-br from-red-500/10 to-pink-500/10 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
+              className="group relative p-10 rounded-2xl bg-gradient-to-br from-red-500/10 to-pink-500/10 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
               onClick={scrollToSavedItems}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -354,7 +365,7 @@ export default function HomePage() {
         </div>
 
         {/* Recent Saved Items with Enhanced Design */}
-        {savedItems.length > 0 && (
+        {mounted && savedItems.length > 0 && (
           <div id="saved-items" className="mb-16">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">

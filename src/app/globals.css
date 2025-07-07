@@ -570,3 +570,57 @@
 .dark .p-toast .p-toast-message .p-toast-icon-close:hover {
   color: hsl(var(--foreground));
 }
+
+/* Fix scrolling issues with sticky elements */
+.sticky {
+  position: sticky;
+  top: 1rem;
+  z-index: 10;
+}
+
+/* Ensure proper scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar for sticky panels */
+.sticky::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sticky::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sticky::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 3px;
+}
+
+.sticky::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Ensure content can scroll properly */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* Fix for accordion content overflow */
+.p-accordion-content {
+  overflow: visible !important;
+}
+
+/* Ensure proper height calculations */
+.h-fit {
+  height: fit-content;
+}
+
+/* Custom height for sticky panels */
+.max-h-\[calc\(100vh-2rem\)\] {
+  max-height: calc(100vh - 2rem);
+}

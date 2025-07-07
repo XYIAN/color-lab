@@ -176,7 +176,7 @@ export default function ComponentsPage() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 min-h-screen">
           {/* Component Preview */}
           <div className="xl:col-span-2">
             <ComponentPreview componentConfig={componentConfig} onSave={handleSaveComponent} />

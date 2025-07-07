@@ -56,7 +56,7 @@ export function CustomizationPanel({
   const { styles, content } = componentConfig;
 
   return (
-    <div className="bg-card rounded-lg p-4 border border-border h-fit sticky top-4">
+    <div className="bg-card rounded-lg p-4 border border-border h-fit sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
       <h2 className="text-xl font-semibold mb-4">Customization</h2>
 
       <Accordion activeIndex={activeIndex} onTabChange={e => setActiveIndex(e.index)}>
